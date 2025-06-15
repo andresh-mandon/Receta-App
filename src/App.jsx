@@ -1,32 +1,20 @@
-import React, { useState } from 'react';
+// App.jsx
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-
+import RecipeDetail from './pages/RecipeDetail';
 import './styles/App.css';
 
 const App = () => {
-  const [view, setView] = useState('home');
-  const [selectedRecipeId, setSelectedRecipeId] = useState(null);
-
-  const handleRecipeClick = (id) => {
-    setSelectedRecipeId(id);
-    setView('detail');
-  };
-
-  const handleBackClick = () => {
-    setView('home');
-  };
-
   return (
-    <div className="app">
-      {view === 'home' ? (
-        <Home onRecipeClick={handleRecipeClick} />
-      ) : (
-        <RecipeDetail 
-          recipeId={selectedRecipeId} 
-          onBackClick={handleBackClick} 
-        />
-      )}
-    </div>
+    <Router>
+      <div className="app">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/recipe/:id" element={<RecipeDetail />} />
+        </Routes>
+      </div>
+    </Router>
   );
 };
 
