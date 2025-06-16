@@ -1,0 +1,218 @@
+/* styles/Home.css */
+.home-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  min-height: 100vh;
+  background: var(--background);
+}
+
+.app-header {
+  text-align: center;
+  padding: 40px 0 60px 0;
+  background: transparent;
+  margin-bottom: 0;
+}
+
+.app-title {
+  background: white;
+  background-image: linear-gradient(135deg, #22c55e 0%, #16a34a 25%, #15803d 50%, #166534 75%, #14532d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin: 0 0 15px 0;
+  padding: 25px 45px;
+  display: inline-block;
+  letter-spacing: -0.02em;
+  position: relative;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 
+    0 10px 30px rgba(34, 197, 94, 0.2),
+    0 4px 15px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border: 2px solid rgba(34, 197, 94, 0.1);
+}
+
+/* Efecto de brillo sutil */
+.app-title::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: white;
+  border-radius: 18px;
+  z-index: -1;
+}
+
+/* Fallback para navegadores que no soporten background-clip */
+@supports not (-webkit-background-clip: text) {
+  .app-title {
+    background: white;
+    color: #16a34a;
+    text-shadow: 0 2px 4px rgba(22, 163, 74, 0.3);
+  }
+}
+
+.app-subtitle {
+  color: var(--text-medium);
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.category-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding: 30px;
+  background: var(--background-light);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px var(--shadow);
+}
+
+.category-title {
+  color: var(--text-dark);
+  font-size: 2.2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 0;
+}
+
+.category-icon {
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.search-container {
+  width: 350px;
+}
+
+/* Estados de carga y error */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--text-dark);
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid var(--border);
+  border-top: 3px solid var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-container p {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-medium);
+  text-align: center;
+}
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--text-dark);
+  text-align: center;
+  padding: 20px;
+}
+
+.error-icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #ef4444;
+}
+
+.error-container p {
+  font-size: 1.1rem;
+  color: var(--text-medium);
+  max-width: 500px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .home-container {
+    padding: 0 15px;
+  }
+  
+  .app-title {
+    font-size: 2.8rem;
+  }
+  
+  .app-subtitle {
+    font-size: 1rem;
+    padding: 0 20px;
+  }
+  
+  .category-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 25px;
+    margin-bottom: 30px;
+    padding: 25px 20px;
+  }
+  
+  .category-title {
+    font-size: 1.8rem;
+    justify-content: center;
+  }
+  
+  .search-container {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header {
+    padding: 20px 0 40px 0;
+  }
+  
+  .app-title {
+    font-size: 2.2rem;
+  }
+  
+  .category-title {
+    font-size: 1.6rem;
+  }
+  
+  .category-header {
+    padding: 20px 15px;
+  }
+}

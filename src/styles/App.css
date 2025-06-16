@@ -1,0 +1,38 @@
+/* styles/App.css */
+:root {
+  --primary: #2563eb;           /* Azul principal */
+  --primary-light: #3b82f6;     /* Azul claro */
+  --primary-dark: #1d4ed8;      /* Azul oscuro */
+  --secondary: #f59e0b;         /* Amarillo dorado */
+  --secondary-light: #fbbf24;   /* Amarillo claro */
+  --accent: #10b981;            /* Verde esmeralda */
+  --background: #f8fafc;        /* Fondo muy claro */
+  --background-light: #ffffff;  /* Fondo blanco */
+  --background-card: #ffffff;   /* Fondo de tarjetas */
+  --text-dark: #1e293b;         /* Texto oscuro */
+  --text-medium: #475569;       /* Texto medio */
+  --text-light: #64748b;        /* Texto claro */
+  --border: #e2e8f0;            /* Bordes */
+  --border-light: #f1f5f9;      /* Bordes claros */
+  --shadow: rgba(0, 0, 0, 0.1); /* Sombras */
+  --border-radius: 12px;        /* Radio de borde consistente */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif;
+  background: var(--background);
+  color: var(--text-dark);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+.app {
+  min-height: 100vh;
+}

@@ -1,14 +1,11 @@
 // components/SearchBar.jsx
 import React from 'react';
+import '../styles/SearchBar.css';
 
-
-const SearchBar = ({ value, onChange, placeholder = "Search recipes..." }) => {
+const SearchBar = ({ value, onChange, placeholder = "Buscar recetas..." }) => {
   const handleChange = (e) => {
     const input = e.target.value;
-    // Solo permitir letras (opcional)
-    if (input === '' || /^[a-zA-Z]+$/.test(input)) {
-      onChange(input);
-    }
+    onChange(input); // Permite cualquier input ahora
   };
 
   return (
@@ -18,7 +15,6 @@ const SearchBar = ({ value, onChange, placeholder = "Search recipes..." }) => {
       placeholder={placeholder}
       value={value}
       onChange={handleChange}
-      maxLength="1" // Opcional: limitar a 1 carácter si solo quieres búsqueda por letra inicial
     />
   );
 };
