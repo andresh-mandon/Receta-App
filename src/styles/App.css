@@ -1,21 +1,21 @@
 /* styles/App.css */
 :root {
-  --primary: #2563eb;           /* Azul principal */
-  --primary-light: #3b82f6;     /* Azul claro */
-  --primary-dark: #1d4ed8;      /* Azul oscuro */
-  --secondary: #f59e0b;         /* Amarillo dorado */
-  --secondary-light: #fbbf24;   /* Amarillo claro */
-  --accent: #10b981;            /* Verde esmeralda */
-  --background: #f8fafc;        /* Fondo muy claro */
-  --background-light: #ffffff;  /* Fondo blanco */
-  --background-card: #ffffff;   /* Fondo de tarjetas */
-  --text-dark: #1e293b;         /* Texto oscuro */
-  --text-medium: #475569;       /* Texto medio */
-  --text-light: #64748b;        /* Texto claro */
-  --border: #e2e8f0;            /* Bordes */
-  --border-light: #f1f5f9;      /* Bordes claros */
-  --shadow: rgba(0, 0, 0, 0.1); /* Sombras */
-  --border-radius: 12px;        /* Radio de borde consistente */
+  --primary: #4C956C;             /* Verde oliva */
+  --primary-light: #82C89A;       /* Verde menta suave */
+  --primary-dark: #2A5D3D;        /* Verde bosque */
+  --secondary: #F28C72;           /* Durazno pastel */
+  --secondary-light: #F5A68B;     /* Versión clara del durazno */
+  --accent: #F28C72;              /* Acento para botones o tags */
+  --background: #FAF9F6;          /* Marfil, mejor contraste que blanco puro */
+  --background-light: #FFFFFF;    /* Tarjetas y elementos */
+  --background-card: #FFFFFF;
+  --text-dark: #1C1C1C;           /* Negro suave */
+  --text-medium: #4A4A4A;
+  --text-light: #9E9E9E;
+  --border: #DDDDDD;
+  --border-light: #EFEFEF;
+  --shadow: rgba(0, 0, 0, 0.07);
+  --border-radius: 12px;
 }
 
 * {

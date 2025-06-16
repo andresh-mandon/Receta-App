@@ -1,19 +1,25 @@
+// src/main.jsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import RecipeDetail from './pages/RecipeDetail'; // Asegúrate del nombre
-import './styles/App.css';
 
+// 1. Importa BrowserRouter
+import { BrowserRouter } from 'react-router-dom';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+// 2. Importa tus componentes y proveedores
+import App from './App.jsx';
+import { FavoritesProvider } from './context/FavoritesContext.jsx';
+
+// 3. Importa tus estilos
+import './styles/App.css'; // o el nombre de tu archivo CSS principal
+
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/recipe/:id" element={<RecipeDetail />} />
-      </Routes>
-    </Router>
+    {/* Primero, el proveedor de datos (Favoritos) */}
+    <FavoritesProvider>
+      {/* Luego, el proveedor de rutas (Router) que envuelve a toda la App */}
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </FavoritesProvider>
   </React.StrictMode>
 );
