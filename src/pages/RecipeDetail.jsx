@@ -1,5 +1,5 @@
 // pages/RecipeDetail.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { fetchRecipeDetails } from '../services/api';
 import '../styles/RecipeDetail.css';
@@ -13,8 +13,13 @@ const RecipeDetail = () => {
 
   useEffect(() => {
     const loadRecipe = async () => {
+      // Reiniciar estado para evitar mostrar datos antiguos en navegación
+      setRecipe(null);
+      setError(null);
+      setLoading(true);
+      window.scrollTo(0, 0); // Opcional: Lleva al usuario al inicio de la página al cargar
+
       try {
-        setLoading(true);
         const data = await fetchRecipeDetails(id);
         setRecipe(data);
       } catch (err) {
@@ -27,70 +32,89 @@ const RecipeDetail = () => {
     loadRecipe();
   }, [id]);
 
-  if (loading) return <div>Loading recipe...</div>;
-  if (error) return <div>Error: {error}</div>;
-  if (!recipe) return <div>Recipe not found</div>;
+  // Usamos useMemo para evitar recalcular los ingredientes en cada render.
+  const ingredients = useMemo(() => {
+    if (!recipe) return [];
+    
+    // Forma funcional y segura de crear la lista de ingredientes
+    return Array.from({ length: 20 }, (_, i) => i + 1)
+      .map(index => ({
+        name: recipe[`strIngredient${index}`],
+        measure: recipe[`strMeasure${index}`],
+      }))
+      .filter(item => item.name && item.name.trim() !== ""); // Filtra ingredientes nulos o vacíos
+  }, [recipe]);
+  
+  // Limpiamos las instrucciones para evitar párrafos vacíos si hay saltos de línea dobles
+  const instructions = useMemo(() => {
+    return recipe?.strInstructions
+      .split('\n')
+      .filter(line => line.trim() !== '') || [];
+  }, [recipe]);
 
-  // Extraer ingredientes
-  const ingredients = [];
-  for (let i = 1; i <= 20; i++) {
-    if (recipe[`strIngredient${i}`]) {
-      ingredients.push({
-        name: recipe[`strIngredient${i}`],
-        measure: recipe[`strMeasure${i}`]
-      });
-    }
-  }
+
+  if (loading) return <div className="loading-state">Loading recipe...</div>;
+  if (error) return <div className="error-state">Error: {error}</div>;
+  if (!recipe) return <div className="not-found-state">Recipe not found</div>;
 
   return (
-    <div className="recipe-detail">
-      <button onClick={() => navigate('/')} className="back-button">
-        ← Back to recipes
+    // Contenedor principal de la página con el nuevo fondo dinámico
+  <div className="recipe-detail-page background-noise">
+      <button onClick={() => navigate(-1)} className="back-button">
+        ← Back
       </button>
-      
-      <h1>{recipe.strMeal}</h1>
-      <div className="meta">
-        <span>{recipe.strCategory}</span>
-        {recipe.strArea && <span> • {recipe.strArea}</span>}
-      </div>
 
-      <div className="content">
-        <div className="media">
+      {/* --- 1. Hero Section Compacta --- */}
+      <header className="recipe-hero">
+        <div className="hero-avatar"> 
           <img src={recipe.strMealThumb} alt={recipe.strMeal} />
-          {recipe.strYoutube && (
-            <div className="video">
-              <h3>Video Tutorial</h3>
-              <iframe
-                src={`https://www.youtube.com/embed/${recipe.strYoutube.split('v=')[1]}`}
-                title="YouTube video player"
-                allowFullScreen
-              ></iframe>
-            </div>
-          )}
         </div>
-
-        <div className="details">
-          <section>
-            <h2>Ingredients</h2>
-            <ul>
-              {ingredients.map((item, index) => (
-                <li key={index}>
-                  {item.measure} {item.name}
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          <section>
-            <h2>Instructions</h2>
-            <div className="instructions">
-              {recipe.strInstructions.split('\n').map((para, i) => (
-                <p key={i}>{para}</p>
-              ))}
-            </div>
-          </section>
+        <div className="hero-info">
+          <h1>{recipe.strMeal}</h1>
+          <div className="meta-tags">
+            <span className="meta-tag">{recipe.strCategory}</span>
+            {recipe.strArea && <span className="meta-tag">{recipe.strArea}</span>}
+          </div>
         </div>
-      </div>
+      </header>
+
+      {/* --- 2. Contenido Principal (Ingredientes y Instrucciones lado a lado) --- */}
+      <main className="recipe-main-content">
+        <section className="recipe-ingredients">
+          <h2>Ingredients</h2>
+          <ul>
+            {ingredients.map((item, index) => (
+              <li key={index}>
+                <span className="measure">{item.measure}</span>
+                <span className="name">{item.name}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="recipe-instructions">
+          <h2>Instructions</h2>
+          <div className="instructions-steps">
+            {instructions.map((step, index) => (
+              <p key={index}>{step}</p>
+            ))}
+          </div>
+        </section>
+      </main>
+
+      {/* --- 3. Sección de Video (si existe) --- */}
+      {recipe.strYoutube && (
+        <section className="recipe-video">
+          <h2>Video Tutorial</h2>
+          <div className="video-wrapper">
+            <iframe
+              src={`https://www.youtube.com/embed/${recipe.strYoutube.split('v=')[1]}`}
+              title="YouTube video player"
+              allowFullScreen
+            ></iframe>
+          </div>
+        </section>
+      )}
     </div>
   );
 };
