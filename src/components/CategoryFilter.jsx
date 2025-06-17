@@ -19,7 +19,7 @@ function CategoryFilter({ categories, value, onChange }) {
 
   return (
     <div className="category-filter-container">
-      <h3 className="filter-title">Filtrar por categoría</h3>
+      <h3 className="filter-title">Filter by Category</h3>
       <div className="category-slider">
         <button className="scroll-btn scroll-btn-left" onClick={scrollLeft}>
           ‹

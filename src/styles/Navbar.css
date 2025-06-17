@@ -4,52 +4,53 @@
 
 /* Contenedor principal de la barra de navegación */
 .navbar {
-  background: #ffffff; /* Fondo blanco y limpio */
+  background: #ffffff;
   height: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.2rem;
-  position: sticky; /* Fija la barra en la parte superior al hacer scroll */
+  position: sticky;
   top: 0;
-  z-index: 1000; /* Asegura que esté por encima de otros elementos */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Sombra sutil para darle profundidad */
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   width: 100%;
+  overflow-x: hidden; /* Evita el scroll horizontal */
 }
 
 /* Contenedor interno que limita el ancho del contenido */
 .navbar-container {
   display: flex;
-  justify-content: space-between; /* Empuja el logo a la izquierda y el menú a la derecha */
+  justify-content: space-between;
   align-items: center;
   height: 100%;
   width: 100%;
   max-width: 1300px;
-  padding: 0 30px; /* Espaciado a los lados */
+  padding: 0 30px;
+  min-width: 0; /* Permite que flexbox funcione correctamente */
 }
 
 /* Estilo del logo "RecetApps" */
 .navbar-logo {
-  color: #2c3e50; /* Un color oscuro y profesional */
+  color: #27ae60;
   cursor: pointer;
   font-size: 2rem;
   font-weight: bold;
-  text-decoration: none; /* Quita el subrayado */
+  text-decoration: none;
   transition: color 0.2s ease-in-out;
+  flex-shrink: 0; /* Evita que el logo se reduzca demasiado */
 }
 
-.navbar-logo:hover {
-  color: #27ae60; /* Un verde que combine con tu tema al pasar el mouse */
-}
 
 /* El menú <ul> que contiene los enlaces */
 .nav-menu {
   display: flex;
   align-items: center;
-  list-style: none; /* Quita los puntos de la lista */
+  list-style: none;
   text-align: center;
   margin: 0;
   padding: 0;
+  flex-shrink: 0; /* Evita que el menú se reduzca */
 }
 
 .nav-item {
@@ -60,7 +61,7 @@
 
 /* Estilo de cada enlace (Inicio, Favoritos) */
 .nav-link {
-  color: #34495e; /* Un gris un poco más claro para los enlaces */
+  color: #34495e;
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -68,33 +69,80 @@
   height: 100%;
   cursor: pointer;
   font-weight: 500;
-  position: relative; /* Necesario para la línea inferior y la pastilla */
+  position: relative;
   transition: color 0.2s ease-in-out;
+  white-space: nowrap; /* Evita que el texto se rompa en múltiples líneas */
 }
 
 .nav-link:hover {
-  color: #27ae60; /* Verde al pasar el mouse */
+  color: #27ae60;
 }
 
 /* Estilo que se aplica SÓLO al enlace de la página activa */
 .nav-link.active {
-  color: #27ae60; /* Color verde para el enlace activo */
-  border-bottom: 4px solid #27ae60; /* Línea inferior que indica la página actual */
+  color: #27ae60;
+  border-bottom: 4px solid #27ae60;
 }
 
-/* La "pastilla" con el número de favoritos */
-.favorites-badge {
-  background-color: #e74c3c; /* Un rojo llamativo para notificaciones */
-  color: white;
-  border-radius: 12px; /* Hace que sea una pastilla redondeada */
-  padding: 3px 8px;
-  font-size: 0.75rem;
-  font-weight: bold;
-  margin-left: 8px; /* Espacio entre el texto "Favoritos" y el número */
-  transition: transform 0.2s ease;
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .navbar {
+    height: 70px;
+    font-size: 1rem;
+  }
+  
+  .navbar-container {
+    padding: 0 20px;
+  }
+  
+  .navbar-logo {
+    font-size: 1.6rem;
+  }
+  
+  .nav-item {
+    height: 70px;
+  }
+  
+  .nav-link {
+    padding: 0 1rem;
+    font-size: 0.9rem;
+  }
 }
 
-/* Un pequeño efecto de escala al pasar el mouse sobre el enlace con la pastilla */
-.nav-link:hover .favorites-badge {
-  transform: scale(1.1);
+@media (max-width: 480px) {
+  .navbar {
+    height: 60px;
+  }
+  
+  .navbar-container {
+    padding: 0 15px;
+  }
+  
+  .navbar-logo {
+    font-size: 1.4rem;
+  }
+  
+  .nav-item {
+    height: 60px;
+  }
+  
+  .nav-link {
+    padding: 0 0.8rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .navbar-container {
+    padding: 0 10px;
+  }
+  
+  .navbar-logo {
+    font-size: 1.2rem;
+  }
+  
+  .nav-link {
+    padding: 0 0.6rem;
+    font-size: 0.8rem;
+  }
 }

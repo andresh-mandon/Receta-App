@@ -68,7 +68,7 @@ const RecipeCard = ({ recipe, showCategory = false }) => {
             onClick={handleViewRecipe}
           >
             <span>👁️</span>
-            Ver Receta
+           View Recipe
           </button>
           
           <button
@@ -76,7 +76,7 @@ const RecipeCard = ({ recipe, showCategory = false }) => {
             onClick={handleToggleFavorite}
           >
             <span>{isFavorite ? '❤️' : '🤍'}</span>
-            {isFavorite ? 'Favorito' : 'Favorito'}
+            {isFavorite ? 'Favorite' : 'Favorite'}
           </button>
         </div>
       </div>
