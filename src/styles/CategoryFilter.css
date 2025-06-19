@@ -1,6 +1,6 @@
-/* styles/CategoryFilter.css */
-.category-filter-container {
-  margin-bottom: 40px;
+/*Contenedor De todo el filtro de categorias*/
+category-filter-container {
+  margin-bottom: 0px;
   background: var(--background-light);
   border-radius: var(--border-radius);
   padding: 25px;
@@ -11,7 +11,7 @@
 .filter-title {
   color: var(--text-dark);
   font-size: 1.3rem;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 20px;
   text-align: center;
 }
@@ -22,6 +22,7 @@
   align-items: center;
   gap: 15px;
 }
+
 
 .scroll-btn {
   background: var(--primary);

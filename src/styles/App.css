@@ -1,21 +1,31 @@
-/* styles/App.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
 :root {
-  --primary: #4C956C;             /* Verde oliva */
-  --primary-light: #82C89A;       /* Verde menta suave */
-  --primary-dark: #2A5D3D;        /* Verde bosque */
-  --secondary: #F28C72;           /* Durazno pastel */
-  --secondary-light: #F5A68B;     /* Versión clara del durazno */
-  --accent: #F28C72;              /* Acento para botones o tags */
-  --background: #FAF9F6;          /* Marfil, mejor contraste que blanco puro */
-  --background-light: #FFFFFF;    /* Tarjetas y elementos */
+  /* Paleta de colores profesional */
+  --primary: #10B981;           
+  --primary-light: #34D399;       
+  --primary-dark: #059669;        
+  --secondary: #3B82F6;          
+  --secondary-light: #60A5FA;     
+  --accent: #F59E0B;             
+  --accent-light: #FBBF24;      
+  --background: #F9FAFB;        
+  --background-light: #FFFFFF;    
   --background-card: #FFFFFF;
-  --text-dark: #1C1C1C;           /* Negro suave */
-  --text-medium: #4A4A4A;
-  --text-light: #9E9E9E;
-  --border: #DDDDDD;
-  --border-light: #EFEFEF;
-  --shadow: rgba(0, 0, 0, 0.07);
-  --border-radius: 12px;
+  --background-dark: #1F2937;    
+  --text-dark: #1F2937;          
+  --text-medium: #4B5563;        
+  --text-light: #6B7280;         
+  --border: #E5E7EB;            
+  --border-light: #F3F4F6;      
+  --shadow: rgba(31, 41, 55, 0.08); 
+  --shadow-hover: rgba(31, 41, 55, 0.15); 
+  
+  /* Gradientes profesionales */
+  --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  --gradient-secondary: linear-gradient(135deg, var(--secondary) 0%, #2563EB 100%);
+  --gradient-accent: linear-gradient(135deg, var(--accent) 0%, #D97706 100%);
+
 }
 
 * {
@@ -26,13 +36,32 @@
 
 body {
   margin: 0;
-  font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif;
+  font-family: 'Poppins', 'Segoe UI', 'Roboto', sans-serif;
   background: var(--background);
   color: var(--text-dark);
   min-height: 100vh;
   line-height: 1.6;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .app {
   min-height: 100vh;
+}
+
+/* Utilidades globales */
+.text-gradient {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.shadow-soft {
+  box-shadow: 0 4px 20px var(--shadow);
+}
+
+.shadow-hover {
+  box-shadow: 0 8px 30px var(--shadow-hover);
 }

@@ -1,4 +1,3 @@
-// pages/RecipeDetail.jsx
 import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { fetchRecipeDetails } from '../services/api';
@@ -11,9 +10,10 @@ const RecipeDetail = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+
+  //Se ejecuta cada vez que se cambia el id o se reinicia la página
   useEffect(() => {
     const loadRecipe = async () => {
-      // Reiniciar estado para evitar mostrar datos antiguos en navegación
       setRecipe(null);
       setError(null);
       setLoading(true);
@@ -32,7 +32,7 @@ const RecipeDetail = () => {
     loadRecipe();
   }, [id]);
 
-  // Usamos useMemo para evitar recalcular los ingredientes en cada render.
+  // Se usa useMemo para evitar recalcular los ingredientes en cada render.
   const ingredients = useMemo(() => {
     if (!recipe) return [];
     
@@ -42,29 +42,46 @@ const RecipeDetail = () => {
         name: recipe[`strIngredient${index}`],
         measure: recipe[`strMeasure${index}`],
       }))
-      .filter(item => item.name && item.name.trim() !== ""); // Filtra ingredientes nulos o vacíos
+      // Filtra ingredientes nulos o vacíos
+      .filter(item => item.name && item.name.trim() !== ""); 
   }, [recipe]);
   
-  // Limpiamos las instrucciones para evitar párrafos vacíos si hay saltos de línea dobles
+  // Se limpia  las instrucciones para evitar párrafos vacíos si hay saltos de línea dobles
   const instructions = useMemo(() => {
     return recipe?.strInstructions
       .split('\n')
       .filter(line => line.trim() !== '') || [];
   }, [recipe]);
 
+  // Loading igual que en Home
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <div className="loading-spinner"></div>
+        <p>Loading recipe...</p>
+      </div>
+    );
+  }
 
-  if (loading) return <div className="loading-state">Loading recipe...</div>;
-  if (error) return <div className="error-state">Error: {error}</div>;
+  if (error) {
+    // Si hay un error, se muestra un mensaje de error
+    return (
+      <div className="error-container">
+         <img src="error-404.png" alt="Error 404" />
+        <p>Oops! Something went wrong: {error}</p>
+      </div>
+    );
+  }
+  // Si no hay receta, se muestra un mensaje de error
   if (!recipe) return <div className="not-found-state">Recipe not found</div>;
 
   return (
-    // Contenedor principal de la página con el nuevo fondo dinámico
-  <div className="recipe-detail-page background-noise">
+    <div className="recipe-detail-page">
       <button onClick={() => navigate(-1)} className="back-button">
         ← Back
       </button>
 
-      {/* --- 1. Hero Section Compacta --- */}
+      {/* Muestra la imagen, nombre, categoría y país */}
       <header className="recipe-hero">
         <div className="hero-avatar"> 
           <img src={recipe.strMealThumb} alt={recipe.strMeal} />
@@ -78,7 +95,7 @@ const RecipeDetail = () => {
         </div>
       </header>
 
-      {/* --- 2. Contenido Principal (Ingredientes y Instrucciones lado a lado) --- */}
+      {/* Lista con los ingredientes y sus medidas. */}
       <main className="recipe-main-content">
         <section className="recipe-ingredients">
           <h2>Ingredients</h2>
@@ -92,6 +109,7 @@ const RecipeDetail = () => {
           </ul>
         </section>
 
+            {/* Lista de instrucciones */}
         <section className="recipe-instructions">
           <h2>Instructions</h2>
           <div className="instructions-steps">
@@ -102,7 +120,7 @@ const RecipeDetail = () => {
         </section>
       </main>
 
-      {/* --- 3. Sección de Video (si existe) --- */}
+      {/* ---  Sección de Video ) --- */}
       {recipe.strYoutube && (
         <section className="recipe-video">
           <h2>Video Tutorial</h2>

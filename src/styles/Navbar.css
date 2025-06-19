@@ -1,8 +1,3 @@
-/* ========================================= */
-/* ===  ESTILOS MEJORADOS PARA NAVBAR.CSS  === */
-/* ========================================= */
-
-/* Contenedor principal de la barra de navegación */
 .navbar {
   background: #ffffff;
   height: 80px;
@@ -15,7 +10,7 @@
   z-index: 1000;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   width: 100%;
-  overflow-x: hidden; /* Evita el scroll horizontal */
+  overflow-x: hidden; 
 }
 
 /* Contenedor interno que limita el ancho del contenido */
@@ -27,7 +22,7 @@
   width: 100%;
   max-width: 1300px;
   padding: 0 30px;
-  min-width: 0; /* Permite que flexbox funcione correctamente */
+  min-width: 0; 
 }
 
 /* Estilo del logo "RecetApps" */
@@ -38,7 +33,7 @@
   font-weight: bold;
   text-decoration: none;
   transition: color 0.2s ease-in-out;
-  flex-shrink: 0; /* Evita que el logo se reduzca demasiado */
+  flex-shrink: 0; 
 }
 
 
@@ -50,7 +45,7 @@
   text-align: center;
   margin: 0;
   padding: 0;
-  flex-shrink: 0; /* Evita que el menú se reduzca */
+  flex-shrink: 0; 
 }
 
 .nav-item {
@@ -59,7 +54,7 @@
   align-items: center;
 }
 
-/* Estilo de cada enlace (Inicio, Favoritos) */
+/* Estilo de cada enlace (Home, Favorites) */
 .nav-link {
   color: #34495e;
   display: flex;
@@ -71,20 +66,20 @@
   font-weight: 500;
   position: relative;
   transition: color 0.2s ease-in-out;
-  white-space: nowrap; /* Evita que el texto se rompa en múltiples líneas */
+  white-space: nowrap; 
 }
 
 .nav-link:hover {
   color: #27ae60;
 }
 
-/* Estilo que se aplica SÓLO al enlace de la página activa */
+/* Estilo que se aplica Solo al enlace de la página activa */
 .nav-link.active {
   color: #27ae60;
   border-bottom: 4px solid #27ae60;
 }
 
-/* RESPONSIVE DESIGN */
+/* Diseño Responsivo */
 @media (max-width: 768px) {
   .navbar {
     height: 70px;

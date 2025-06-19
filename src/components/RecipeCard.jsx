@@ -1,10 +1,37 @@
-// components/RecipeCard.jsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useFavorites } from '../context/FavoritesContext';
 import '../styles/RecipeCard.css';
 
-const RecipeCard = ({ recipe, showCategory = false }) => {
+// Componente de ícono de estrella SVG
+const StarIcon = ({ filled = false }) => (
+  <svg 
+    viewBox="0 0 24 24" 
+    fill={filled ? "currentColor" : "none"} 
+    stroke="currentColor" 
+    strokeWidth="2"
+  >
+    <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2" />
+  </svg>
+);
+
+// Componente de ícono de ojo para "Ver receta"
+const EyeIcon = () => (
+  <svg 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2"
+    width="16" 
+    height="16"
+  >
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+    <circle cx="12" cy="12" r="3"/>
+  </svg>
+);
+
+//Función de Tarjeta de Receta(Solo recibe Receta)
+const RecipeCard = ({ recipe}) => {
   const navigate = useNavigate();
   const { favorites, addToFavorites, removeFromFavorites } = useFavorites();
   
@@ -15,6 +42,7 @@ const RecipeCard = ({ recipe, showCategory = false }) => {
     navigate(`/recipe/${recipe.idMeal}`);
   };
 
+  //Función para Guardar y quitar de favoritos
   const handleToggleFavorite = (e) => {
     e.stopPropagation();
     if (isFavorite) {
@@ -23,7 +51,8 @@ const RecipeCard = ({ recipe, showCategory = false }) => {
       addToFavorites(recipe);
     }
   };
-
+ 
+  //Función para llevar al detalle de la receta
   const handleCardClick = () => {
     navigate(`/recipe/${recipe.idMeal}`);
   };
@@ -37,24 +66,13 @@ const RecipeCard = ({ recipe, showCategory = false }) => {
           className="recipe-image"
         />
         
-        {/* Overlay con gradiente */}
+        {/* Overlay con gradiente CSS*/}
         <div className="recipe-image-overlay"></div>
         
-        {/* Botón de favorito flotante */}
-        <button
-          className={`favorite-button ${isFavorite ? 'active' : ''}`}
-          onClick={handleToggleFavorite}
-          aria-label={isFavorite ? 'Quitar de favoritos' : 'Añadir a favoritos'}
-        >
-          <span className="heart-icon">
-            {isFavorite ? '❤️' : '🤍'}
-          </span>
-        </button>
-
-        {/* Indicador de categoría */}
-        {showCategory && recipe.strCategory && (
-          <div className="recipe-category">
-            {recipe.strCategory}
+        {/* Estrella de favorito en la esquina superior derecha */}
+        {isFavorite && (
+          <div className="favorite-corner-star">
+            <StarIcon filled={true} />
           </div>
         )}
       </div>
@@ -63,20 +81,20 @@ const RecipeCard = ({ recipe, showCategory = false }) => {
         <h3 className="recipe-title">{recipe.strMeal}</h3>
         
         <div className="recipe-actions">
-          <button
+          <button 
             className="action-button view-recipe-button"
             onClick={handleViewRecipe}
           >
-            <span>👁️</span>
-           View Recipe
+            <EyeIcon />
+            View Recipe
           </button>
           
-          <button
+          <button 
             className={`action-button favorite-action-button ${isFavorite ? 'active' : ''}`}
             onClick={handleToggleFavorite}
           >
-            <span>{isFavorite ? '❤️' : '🤍'}</span>
-            {isFavorite ? 'Favorite' : 'Favorite'}
+            <StarIcon filled={isFavorite} />
+            {isFavorite ? 'Favorited' : 'Add to Favorites'}
           </button>
         </div>
       </div>

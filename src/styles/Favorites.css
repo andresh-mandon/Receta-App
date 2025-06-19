@@ -1,31 +1,56 @@
-/* src/styles/Favorites.css */
 .favorites-container {
-  padding: 2rem;
-  max-width: 1200px;
+  padding: 3rem 2rem;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
 .favorites-header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .favorites-title {
   font-size: 2.5rem;
-  color: #333;
+  color: var(--text-dark);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+.favorites-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: var(--gradient-primary);
+  border-radius: 2px;
 }
 
 .no-favorites-message {
   text-align: center;
-  padding: 4rem 1rem;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  border: 1px dashed #ddd;
-  margin-top: 2rem;
+  padding: 4rem 2rem;
+  background: var(--background-light);
+  border-radius: var(--border-radius);
+  border: 1px dashed var(--border);
+  margin: 2rem auto;
+  max-width: 600px;
+  box-shadow: var(--shadow-soft);
 }
 
 .no-favorites-message p {
   font-size: 1.2rem;
-  color: #666;
+  color: var(--text-medium);
   margin: 0.5rem 0;
+  line-height: 1.6;
+}
+
+.no-favorites-message svg {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 1.5rem;
+  color: var(--accent-light);
 }

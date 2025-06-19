@@ -1,13 +1,14 @@
-// components/SearchBar.jsx
 import React from 'react';
 import '../styles/SearchBar.css';
 
-const SearchBar = ({ value, onChange, placeholder = "Buscar recetas" }) => {
+//Función de Barra de Búsqueda(Recibe El texto Actual, y una Función Mientras se escribe y el placeholder)
+const SearchBar = ({ value, onChange, placeholder = "Buscar recetas..." }) => {
   const handleChange = (e) => {
     const input = e.target.value;
-    onChange(input); // Permite cualquier input ahora
+    onChange(input); 
   };
 
+  //Retorna el input
   return (
     <input
       type="text"

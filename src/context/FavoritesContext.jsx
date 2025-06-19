@@ -1,8 +1,9 @@
-// context/FavoritesContext.jsx
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
+//Contexto de Favoritos
 const FavoritesContext = createContext();
 
+//Funcion para obtener el contexto de Favoritos
 export const useFavorites = () => {
   const context = useContext(FavoritesContext);
   if (!context) {
@@ -10,7 +11,7 @@ export const useFavorites = () => {
   }
   return context;
 };
-
+//Provedor de Favoritos(Guarda, Comparte a todos los componentes)
 export const FavoritesProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
 
@@ -25,9 +26,10 @@ export const FavoritesProvider = ({ children }) => {
     localStorage.setItem('recipeAppFavorites', JSON.stringify(favorites));
   }, [favorites]);
 
+  //Guarda Favoritos
   const addToFavorites = (recipe) => {
     setFavorites(prev => {
-      // Evitar duplicados
+      //Verifica si ya esta guardada 
       if (prev.some(fav => fav.idMeal === recipe.idMeal)) {
         return prev;
       }
@@ -35,6 +37,7 @@ export const FavoritesProvider = ({ children }) => {
     });
   };
 
+  //Quita Favoritos Por su id
   const removeFromFavorites = (recipeId) => {
     setFavorites(prev => prev.filter(fav => fav.idMeal !== recipeId));
   };
@@ -47,6 +50,7 @@ export const FavoritesProvider = ({ children }) => {
     return favorites.some(fav => fav.idMeal === recipeId);
   };
 
+  //Funcion que tiene el contexto de Favoritos
   const value = {
     favorites,
     addToFavorites,
