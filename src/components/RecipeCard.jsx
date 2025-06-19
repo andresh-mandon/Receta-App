@@ -86,7 +86,7 @@ const RecipeCard = ({ recipe}) => {
             onClick={handleViewRecipe}
           >
             <EyeIcon />
-            View Recipe
+            <span>View Recipe</span>
           </button>
           
           <button 
@@ -94,7 +94,9 @@ const RecipeCard = ({ recipe}) => {
             onClick={handleToggleFavorite}
           >
             <StarIcon filled={isFavorite} />
-            {isFavorite ? 'Favorited' : 'Add to Favorites'}
+            <span className="button-text">
+              {isFavorite ? 'Favorited' : 'Add to Favorites'}
+            </span>
           </button>
         </div>
       </div>

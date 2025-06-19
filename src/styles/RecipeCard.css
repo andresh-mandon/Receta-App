@@ -155,26 +155,27 @@
   min-height: 2.8rem;
 }
 
-/* Botones de acción */
+/* Botones de acción - OPTIMIZADOS PARA MÓVIL */
 .recipe-actions {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   margin-top: auto;
 }
 
 .action-button {
   flex: 1;
-  padding: 10px 16px;
+  padding: 8px 12px; /* Reducido de 10px 16px */
   border: none;
-  border-radius: 8px;
+  border-radius: 6px; /* Reducido de 8px */
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.8rem; /* Reducido de 0.9rem */
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 4px; /* Reducido de 6px */
+  min-height: 36px; /* Altura mínima consistente */
 }
 
 .view-recipe-button {
@@ -229,66 +230,105 @@
   backdrop-filter: blur(10px);
 }
 
-/* Responsive */
+/* Responsive - MEJORADO PARA MÓVIL */
 @media (max-width: 768px) {
   .recipe-card {
-    height: 300px;
+    height: 280px; /* Reducido de 300px */
   }
   
   .recipe-image-container {
-    height: 180px;
+    height: 170px; /* Aumentado de 180px para dar más espacio a la imagen */
   }
   
   .recipe-info {
-    padding: 15px;
+    padding: 12px; /* Reducido de 15px */
   }
   
   .recipe-title {
-    font-size: 1rem;
+    font-size: 0.95rem; /* Reducido de 1rem */
+    margin: 0 0 12px 0; /* Reducido margen */
+    min-height: 2.5rem; /* Reducido */
   }
 
   .action-button {
-    padding: 8px 12px;
-    font-size: 0.8rem;
+    padding: 6px 8px; /* Más compacto */
+    font-size: 0.75rem; /* Más pequeño */
+    min-height: 32px; /* Reducido */
+    gap: 3px;
+  }
+  
+  /* Iconos más pequeños en móvil */
+  .action-button svg {
+    width: 14px;
+    height: 14px;
   }
 }
 
 @media (max-width: 480px) {
   .recipe-card {
-    height: 280px;
+    height: 260px; /* Más compacto */
   }
   
   .recipe-image-container {
-    height: 160px;
+    height: 160px; /* Más espacio para la imagen */
+  }
+  
+  .recipe-info {
+    padding: 10px; /* Más compacto */
+  }
+  
+  .recipe-title {
+    font-size: 0.9rem;
+    margin: 0 0 10px 0;
+    min-height: 2.2rem;
+  }
+  
+  .action-button {
+    padding: 5px 6px; /* Muy compacto */
+    font-size: 0.7rem; /* Más pequeño */
+    min-height: 28px; /* Muy pequeño */
+    gap: 2px;
+    border-radius: 4px; /* Bordes más pequeños */
+  }
+  
+  /* Iconos aún más pequeños */
+  .action-button svg {
+    width: 12px;
+    height: 12px;
+  }
+  
+  /* Texto del botón más corto en pantallas muy pequeñas */
+  .favorite-action-button span.button-text {
+    display: none; /* Ocultar texto, solo mostrar icono */
   }
   
   .favorite-corner-star {
-    width: 36px;
-    height: 36px;
-    top: 10px;
-    right: 10px;
+    width: 32px; /* Reducido de 36px */
+    height: 32px;
+    top: 8px;
+    right: 8px;
   }
   
   .favorite-corner-star svg {
-    width: 18px;
-    height: 18px;
+    width: 16px; /* Reducido de 18px */
+    height: 16px;
   }
   
   .favorite-button {
-    width: 36px;
-    height: 36px;
-    top: 10px;
-    right: 10px;
+    width: 32px; /* Reducido de 36px */
+    height: 32px;
+    top: 8px;
+    right: 8px;
   }
   
   .favorite-button .heart-icon {
-    font-size: 1rem;
+    font-size: 0.9rem; /* Reducido de 1rem */
   }
   
   .recipe-category {
-    top: 10px;
-    left: 10px;
-    font-size: 0.6rem;
-    padding: 3px 6px;
+    top: 8px;
+    left: 8px;
+    font-size: 0.55rem; /* Reducido de 0.6rem */
+    padding: 2px 4px; /* Reducido de 3px 6px */
   }
 }
